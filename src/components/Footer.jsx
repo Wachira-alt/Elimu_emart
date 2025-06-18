@@ -1,0 +1,1 @@
+// Social media links for the footer component, copyright notice, and additional links
