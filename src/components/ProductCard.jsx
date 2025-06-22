@@ -1,1 +1,0 @@
-// Product display card component
