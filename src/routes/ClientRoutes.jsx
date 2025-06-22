@@ -10,6 +10,8 @@ import HotDeals from "../pages/user/HotDeals";
 import ProfilePage from "../pages/user/ProfilePage";
 import TopCategories from "../pages/user/TopCategories";
 import TrackOrder from "../pages/user/TrackOrder";
+import Login from "../pages/client/Login";
+import Register from "../pages/client/Register";
 
 export default function ClientRoutes() {
   return (
@@ -21,6 +23,8 @@ export default function ClientRoutes() {
       <Route path="/faq" element={<FAQ />} />
       <Route path="/get-help" element={<GetHelp />} />
       <Route path="/hot-deals" element={<HotDeals />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
       <Route path="/profile" element={<ProfilePage />} />
       <Route path="/top-categories" element={<TopCategories />} />
       <Route path="/Checkout" element={<TrackOrder />} />
