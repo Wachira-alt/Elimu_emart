@@ -23,7 +23,7 @@ export default function ClientRoutes() {
       <Route path="/hot-deals" element={<HotDeals />} />
       <Route path="/profile" element={<ProfilePage />} />
       <Route path="/top-categories" element={<TopCategories />} />
-      <Route path="/track-order" element={<TrackOrder />} />
+      <Route path="/Checkout" element={<TrackOrder />} />
     </Routes>
   );
 }
