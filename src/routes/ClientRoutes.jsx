@@ -1,15 +1,15 @@
 import { Routes, Route } from "react-router-dom";
 
-import Home from "../pages/client/Home";
-import AboutUs from "../pages/client/AboutUs";
-import Accessories from "../pages/client/Accessories";
-import CartPage from "../pages/client/CartPage";
-import FAQ from "../pages/client/FAQ";
-import GetHelp from "../pages/client/GetHelp";
-import HotDeals from "../pages/client/HotDeals";
-import ProfilePage from "../pages/client/ProfilePage";
-import TopCategories from "../pages/client/TopCategories";
-import TrackOrder from "../pages/client/TrackOrder";
+import Home from "../pages/user/Home";
+import AboutUs from "../pages/user/AboutUs";
+import Accessories from "../pages/user/Accessories";
+import CartPage from "../pages/user/CartPage";
+import FAQ from "../pages/user/FAQ";
+import GetHelp from "../pages/user/GetHelp";
+import HotDeals from "../pages/user/HotDeals";
+import ProfilePage from "../pages/user/ProfilePage";
+import TopCategories from "../pages/user/TopCategories";
+import TrackOrder from "../pages/user/TrackOrder";
 
 export default function ClientRoutes() {
   return (
