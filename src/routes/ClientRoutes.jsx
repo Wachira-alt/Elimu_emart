@@ -9,6 +9,7 @@ import GetHelp from "../pages/user/GetHelp";
 import HotDeals from "../pages/user/HotDeals";
 import ProfilePage from "../pages/user/ProfilePage";
 import TopCategories from "../pages/user/TopCategories";
+import ProductList from "../pages/user/ProductList";
 
 import Login from "../pages/user/Login";
 import Register from "../pages/user/Register";
@@ -27,6 +28,7 @@ export default function ClientRoutes() {
       <Route path="/register" element={<Register />} />
       <Route path="/profile" element={<ProfilePage />} />
       <Route path="/top-categories" element={<TopCategories />} />
+      <Route path="/products" element={<ProductList />} />
    
     </Routes>
   );
