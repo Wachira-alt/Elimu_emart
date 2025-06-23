@@ -9,16 +9,15 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);           // User info
   const [token, setToken] = useState(null);         // JWT token
 
-  // Fetch user info from token
-  const fetchUser = async (jwtToken) => {
-    const { ok, data } = await fetchProfile(jwtToken);
+  // Fetch user info using token (handled by Axios interceptor)
+  const fetchUser = async () => {
+    const { ok, data } = await fetchProfile();
     if (ok) {
       setUser(data);
-      setToken(jwtToken);
-      localStorage.setItem("token", jwtToken);
+      setToken(localStorage.getItem("token")); // already stored
       localStorage.setItem("user", JSON.stringify(data));
     } else {
-      logout(); // Token expired or invalid
+      logout(); // Invalid or expired token
     }
   };
 
@@ -26,7 +25,8 @@ export const AuthProvider = ({ children }) => {
   const register = async (username, email, password) => {
     const { ok, data } = await registerUser(username, email, password);
     if (ok) {
-      fetchUser(data.access_token);
+      localStorage.setItem("token", data.access_token);
+      await fetchUser();
       return { success: true };
     } else {
       return { success: false, error: data.error };
@@ -37,14 +37,15 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     const { ok, data } = await loginUser(email, password);
     if (ok) {
-      fetchUser(data.access_token);
+      localStorage.setItem("token", data.access_token);
+      await fetchUser();
       return { success: true };
     } else {
       return { success: false, error: data.error };
     }
   };
 
-  // Logout
+  // Logout user
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
@@ -52,11 +53,11 @@ export const AuthProvider = ({ children }) => {
     setToken(null);
   };
 
-  // On load, check if token exists and fetch user
+  // On mount, auto-login if token exists
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
     if (storedToken) {
-      fetchUser(storedToken);
+      fetchUser();
     }
   }, []);
 

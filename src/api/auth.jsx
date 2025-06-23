@@ -1,37 +1,31 @@
-const BASE_URL = "http://localhost:5000/api";
+import api from "./axiosInstance";
 
 // 🔐 REGISTER NEW USER
 export const registerUser = async (username, email, password) => {
-  const res = await fetch(`${BASE_URL}/register`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ username, email, password }),
-  });
-
-  const data = await res.json();
-  return { ok: res.ok, data };
+  try {
+    const res = await api.post("/register", { username, email, password });
+    return { ok: true, data: res.data };
+  } catch (err) {
+    return { ok: false, error: err.response?.data?.error || "Register failed" };
+  }
 };
 
 // 🔐 LOGIN USER
 export const loginUser = async (email, password) => {
-  const res = await fetch(`${BASE_URL}/login`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, password }),
-  });
-
-  const data = await res.json();
-  return { ok: res.ok, data };
+  try {
+    const res = await api.post("/login", { email, password });
+    return { ok: true, data: res.data };
+  } catch (err) {
+    return { ok: false, error: err.response?.data?.error || "Login failed" };
+  }
 };
 
-// 🔐 GET PROFILE (Requires JWT)
-export const fetchProfile = async (token) => {
-  const res = await fetch(`${BASE_URL}/profile`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-
-  const data = await res.json();
-  return { ok: res.ok, data };
+// 🔐 FETCH PROFILE
+export const fetchProfile = async () => {
+  try {
+    const res = await api.get("/profile"); // Token is auto-attached by interceptor
+    return { ok: true, data: res.data };
+  } catch (err) {
+    return { ok: false, error: err.response?.data?.error || "Profile fetch failed" };
+  }
 };
