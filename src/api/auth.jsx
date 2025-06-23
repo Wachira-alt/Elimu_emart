@@ -1,30 +1,37 @@
-export async function loginUser(credentials) {
-  // Simulate real backend delay
-  return new Promise((resolve) =>
-    setTimeout(() => {
-      resolve({
-        user: {
-          id: 1,
-          username: credentials.username,
-          role: credentials.username === "admin" ? "admin" : "user",
-        },
-        token: "mock-jwt-token-123",
-      });
-    }, 800)
-  );
-}
+const BASE_URL = "http://localhost:5000/api";
 
-export async function registerUser(data) {
-  return new Promise((resolve) =>
-    setTimeout(() => {
-      resolve({
-        user: {
-          id: 2,
-          username: data.username,
-          role: "user",
-        },
-        token: "mock-jwt-token-456",
-      });
-    }, 800)
-  );
-}
+// 🔐 REGISTER NEW USER
+export const registerUser = async (username, email, password) => {
+  const res = await fetch(`${BASE_URL}/register`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ username, email, password }),
+  });
+
+  const data = await res.json();
+  return { ok: res.ok, data };
+};
+
+// 🔐 LOGIN USER
+export const loginUser = async (email, password) => {
+  const res = await fetch(`${BASE_URL}/login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password }),
+  });
+
+  const data = await res.json();
+  return { ok: res.ok, data };
+};
+
+// 🔐 GET PROFILE (Requires JWT)
+export const fetchProfile = async (token) => {
+  const res = await fetch(`${BASE_URL}/profile`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  const data = await res.json();
+  return { ok: res.ok, data };
+};
