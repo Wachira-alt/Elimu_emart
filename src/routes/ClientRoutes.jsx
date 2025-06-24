@@ -10,6 +10,8 @@ import HotDeals from "../pages/user/HotDeals";
 import ProfilePage from "../pages/user/ProfilePage";
 import TopCategories from "../pages/user/TopCategories";
 import ProductList from "../pages/user/ProductList";
+import CheckoutPage from "../pages/user/CheckoutPage";
+import OrderSuccess from "../pages/user/OrderSuccess";
 
 import Login from "../pages/user/Login";
 import Register from "../pages/user/Register";
@@ -24,6 +26,8 @@ export default function ClientRoutes() {
       <Route path="/faq" element={<FAQ />} />
       <Route path="/get-help" element={<GetHelp />} />
       <Route path="/hot-deals" element={<HotDeals />} />
+      <Route path="/checkout" element={<CheckoutPage />} />
+     <Route path="/checkout/success" element={<OrderSuccess />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/profile" element={<ProfilePage />} />
