@@ -49,7 +49,7 @@ export default function Navbar() {
                 </button>
               )}
               {/* Optional profile */}
-              {/* <NavLink to="/profile" className={navLink}>{user.username}</NavLink> */}
+              <NavLink to="/profile" className={navLink}>{user.username}</NavLink>
               <button
                 onClick={logout}
                 className="text-xs text-[#6F4E37] hover:text-red-500 transition"
